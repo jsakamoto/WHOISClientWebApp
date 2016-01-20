@@ -27,7 +27,6 @@ namespace WhoisASPNET
             config.MapHttpAttributeRoutes();
             app.UseWebApi(config);
 
-#if !DEBUG
             var fileSystem = new PhysicalFileSystem(AppDomain.CurrentDomain.BaseDirectory);
             app.UseDefaultFiles(new DefaultFilesOptions
             {
@@ -39,7 +38,6 @@ namespace WhoisASPNET
                 FileSystem = fileSystem,
                 ServeUnknownFileTypes = false
             });
-#endif
         }
 
         // <summary>
