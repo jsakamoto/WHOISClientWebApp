@@ -12,8 +12,8 @@
 
         public response: WhoisResponse;
 
-        constructor($resource: ng.resource.IResourceService) {
-            this.encoding = 'us-ascii';
+        constructor($resource: ng.resource.IResourceService, private $cookies: ng.cookies.ICookiesService) {
+            this.encoding = $cookies.get('encoding') || 'us-ascii';
             this.whoisApi = $resource<WhoisResponse>('/api/whois/:query');
             this.encodings = $resource<string>('/api/encodings').query(() => {
                 setTimeout(() => { ($('select') as any).material_select(); }, 0);
@@ -21,6 +21,7 @@
         }
 
         public executeQuery(): void {
+            this.$cookies.put('encoding', this.encoding, { expires: 'Thu, 30 Dec 9999 15:00:00 GMT' });
             this.response = this.whoisApi.get({
                 query: this.query,
                 server: this.server,
@@ -30,6 +31,6 @@
     }
 
     angular
-        .module('app', ['ngResource'])
+        .module('app', ['ngResource', 'ngCookies'])
         .controller('mainController', MainController);
 }
