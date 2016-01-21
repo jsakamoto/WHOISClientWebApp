@@ -49,13 +49,18 @@
                 </div>
             </form>
 
-            <div class="col s12 m6 l7">
-                <div>{{ctrl.response.RespondedServers.join(' > ')}}</div>
-                <div>{{ctrl.response.OrganizationName}}</div>
-                <div>{{ctrl.response.AddressRange.Begin}}</div>
-                <div>{{ctrl.response.AddressRange.End}}</div>
-                <pre>{{ctrl.response.Raw}}</pre>
-            </div>
+            <div class="col s12 m6 l7 response">
+                <label>Response</label>
+                <div ng-show="ctrl.response.Raw != null">
+                    <h4>Responded servers</h4>
+                    <div>{{ctrl.response.RespondedServers.join(' > ')}}</div>
+                    <h4>IP address range</h4>
+                    <div>{{ctrl.response.AddressRange.Begin}} - {{ctrl.response.AddressRange.End}}</div>
+                    <h4>Organization name</h4>
+                    <div>{{ctrl.response.OrganizationName}}</div>
+                    <h4>Raw response text</h4>
+                    <pre>{{ctrl.response.Raw}}</pre>
+                </div>            </div>
         </div>
     </div>
 

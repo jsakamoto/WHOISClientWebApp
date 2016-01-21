@@ -24,4 +24,3 @@ var WhoisASPNET;
         .module('app', ['ngResource', 'ngCookies'])
         .controller('mainController', MainController);
 })(WhoisASPNET || (WhoisASPNET = {}));
-//# sourceMappingURL=app.js.map
