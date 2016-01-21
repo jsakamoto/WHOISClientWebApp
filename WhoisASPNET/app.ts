@@ -14,9 +14,10 @@
 
         constructor($resource: ng.resource.IResourceService) {
             this.encoding = 'us-ascii';
-            this.query = '219.165.73.19';
             this.whoisApi = $resource<WhoisResponse>('/api/whois/:query');
-            this.encodings = $resource<string>('/api/encodings').query();
+            this.encodings = $resource<string>('/api/encodings').query(() => {
+                setTimeout(() => { ($('select') as any).material_select(); }, 0);
+            });
         }
 
         public executeQuery(): void {

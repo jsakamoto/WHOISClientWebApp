@@ -3,9 +3,10 @@ var WhoisASPNET;
     var MainController = (function () {
         function MainController($resource) {
             this.encoding = 'us-ascii';
-            this.query = '219.165.73.19';
             this.whoisApi = $resource('/api/whois/:query');
-            this.encodings = $resource('/api/encodings').query();
+            this.encodings = $resource('/api/encodings').query(function () {
+                setTimeout(function () { $('select').material_select(); }, 0);
+            });
         }
         MainController.prototype.executeQuery = function () {
             this.response = this.whoisApi.get({
@@ -21,4 +22,3 @@ var WhoisASPNET;
         .module('app', ['ngResource'])
         .controller('mainController', MainController);
 })(WhoisASPNET || (WhoisASPNET = {}));
-//# sourceMappingURL=app.js.map

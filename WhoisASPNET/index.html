@@ -1,38 +1,80 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Whois ASP.NET</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="content/materialize.min.css" rel="stylesheet" />
     <link href="content/site.min.css" rel="stylesheet" />
 </head>
+
 <body ng-app="app" ng-controller="mainController as ctrl" ng-cloak>
-    <div>
-        <input type="text" id="query" ng-model="ctrl.query" />
-    </div>
-    <div>
-        <input type="text" id="server" ng-model="ctrl.server" />
-    </div>
-    <div>
-        <select ng-model="ctrl.encoding" ng-options="encoding for encoding in ctrl.encodings"></select>
+    <nav class="grey darken-2" role="navigation">
+        <div class="nav-wrapper container">
+            <div id="logo-container" class="brand-logo">Whois ASP.NET</div>
+            <ul class="right">
+                <li><a href="swagger/ui/index">API Document</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container section">
+        <div class="row">
+            <form class="col s12 m6 l5">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="query" ng-model="ctrl.query" placeholder="Domain or IP Address to query"/>
+                        <label for="query">Query</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="server" ng-model="ctrl.server" placeholder="(optional) Host name or IP Address of whois server"/>
+                        <label for="server">Whois server</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select ng-model="ctrl.encoding" ng-options="encoding for encoding in ctrl.encodings"></select>
+                        <label>Encoding</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button ng-click="ctrl.executeQuery()" class="blue btn-large waves-effect waves-light col s12">
+                            query
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col s12 m6 l7">
+                <div>{{ctrl.response.RespondedServers.join(' > ')}}</div>
+                <div>{{ctrl.response.OrganizationName}}</div>
+                <div>{{ctrl.response.AddressRange.Begin}}</div>
+                <div>{{ctrl.response.AddressRange.End}}</div>
+                <pre>{{ctrl.response.Raw}}</pre>
+            </div>
+        </div>
     </div>
 
-    <div>
-        <button ng-click="ctrl.executeQuery()">
-            query
-        </button>
-    </div>
-
-    <div>
-        <div>{{ctrl.response.RespondedServers.join(' > ')}}</div>
-        <div>{{ctrl.response.OrganizationName}}</div>
-        <div>{{ctrl.response.AddressRange.Begin}}</div>
-        <div>{{ctrl.response.AddressRange.End}}</div>
-        <pre>{{ctrl.response.Raw}}</pre>
-    </div>
+    <footer class="page-footer grey darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 grey-text">
+                    <p>
+                        GNU GPL v2 | Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="scripts/jquery-2.2.0.min.js"></script>
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/angular-resource.min.js"></script>
+    <script src="scripts/materialize.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
