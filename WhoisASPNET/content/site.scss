@@ -18,3 +18,8 @@ body {
         font-size: 0.9rem;
     }
 }
+
+.disabled button {
+    background-color: #ccc !important;
+    pointer-events: none;
+}

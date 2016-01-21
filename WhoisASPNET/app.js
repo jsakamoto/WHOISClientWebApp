@@ -9,7 +9,9 @@ var WhoisASPNET;
                 setTimeout(function () { $('select').material_select(); }, 0);
             });
         }
-        MainController.prototype.executeQuery = function () {
+        MainController.prototype.executeQuery = function (isValidForm) {
+            if (isValidForm == false)
+                return;
             this.$cookies.put('encoding', this.encoding, { expires: 'Thu, 30 Dec 9999 15:00:00 GMT' });
             this.response = this.whoisApi.get({
                 query: this.query,

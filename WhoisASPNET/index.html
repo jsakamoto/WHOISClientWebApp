@@ -21,10 +21,10 @@
 
     <div class="container section">
         <div class="row">
-            <form class="col s12 m6 l5">
+            <form name="queryform" class="col s12 m6 l5" ng-submit="ctrl.executeQuery(queryform.$valid)" novalidate>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" id="query" ng-model="ctrl.query" placeholder="Domain or IP Address to query"/>
+                        <input type="text" id="query" ng-model="ctrl.query" placeholder="Domain or IP Address to query" required/>
                         <label for="query">Query</label>
                     </div>
                 </div>
@@ -41,10 +41,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <button ng-click="ctrl.executeQuery()" class="blue btn-large waves-effect waves-light col s12">
-                            query
-                        </button>
+                    <div class="input-field col s12" ng-class="{disabled:queryform.$invalid}">
+                        <button type="submit" class="blue btn btn-large waves-effect waves-light col s12">query</button>
                     </div>
                 </div>
             </form>

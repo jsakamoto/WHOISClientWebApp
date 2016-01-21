@@ -20,7 +20,9 @@
             });
         }
 
-        public executeQuery(): void {
+        public executeQuery(isValidForm: boolean): void {
+            if (isValidForm == false) return;
+
             this.$cookies.put('encoding', this.encoding, { expires: 'Thu, 30 Dec 9999 15:00:00 GMT' });
             this.response = this.whoisApi.get({
                 query: this.query,
