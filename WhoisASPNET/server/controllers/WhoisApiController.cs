@@ -27,10 +27,10 @@ namespace WhoisASPNET
         /// <param name="encoding">optional. default value is 'us-ascii'.</param>
         /// <returns>WhoisResponse object</returns>
         [HttpGet, Route("whois/{query}"), CacheOutput(NoCache = true)]
-        public WhoisResponse Query_V2(string query, string server = null, int port = 43, string encoding = "us-ascii")
+        public WhoisResponseWrapper Query_V2(string query, string server = null, int port = 43, string encoding = "us-ascii")
         {
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentException("required 'query' parameter.", "query");
-            return WhoisClient.Query(query, server, port, Encoding.GetEncoding(encoding));
+            return new WhoisResponseWrapper(WhoisClient.Query(query, server, port, Encoding.GetEncoding(encoding)));
         }
 
         // GET /api/query/
@@ -43,7 +43,7 @@ namespace WhoisASPNET
         /// <param name="encoding">optional. default value is 'us-ascii'.</param>
         /// <returns>WhoisResponse object</returns>
         [HttpGet, Route("query"), CacheOutput(NoCache = true), Obsolete("OMG")]
-        public WhoisResponse Query_V1(string query, string server = null, int port = 43, string encoding = "us-ascii")
+        public WhoisResponseWrapper Query_V1(string query, string server = null, int port = 43, string encoding = "us-ascii")
         {
             return Query_V2(query, server, port, encoding);
         }

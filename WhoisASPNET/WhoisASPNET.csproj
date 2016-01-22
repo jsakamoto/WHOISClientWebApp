@@ -237,6 +237,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="server\models\IPAddressRangeWrapper.cs" />
+    <Compile Include="server\models\WhoisResponseWrapper.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="server\controllers\WhoisApiController.cs" />
   </ItemGroup>
