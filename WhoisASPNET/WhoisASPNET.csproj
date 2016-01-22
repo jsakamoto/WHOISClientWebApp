@@ -145,6 +145,20 @@
     </Content>
     <Content Include="content\font\material-design-icons\LICENSE.txt" />
     <Content Include="content\font\material-design-icons\Material-Design-Icons.svg" />
+    <Content Include="content\icons\android-chrome-36x36.png" />
+    <Content Include="content\icons\android-chrome-48x48.png" />
+    <Content Include="content\icons\apple-touch-icon-57x57.png" />
+    <Content Include="content\icons\apple-touch-icon-60x60.png" />
+    <Content Include="content\icons\apple-touch-icon-precomposed.png" />
+    <Content Include="content\icons\apple-touch-icon.png" />
+    <Content Include="content\icons\browserconfig.xml" />
+    <Content Include="content\icons\favicon-16x16.png" />
+    <Content Include="content\icons\favicon-32x32.png" />
+    <Content Include="content\icons\favicon.ico" />
+    <Content Include="content\icons\mstile-150x150.png" />
+    <Content Include="content\icons\mstile-310x150.png" />
+    <Content Include="content\icons\mstile-70x70.png" />
+    <Content Include="content\icons\safari-pinned-tab.svg" />
     <Content Include="content\materialize.css" />
     <Content Include="content\materialize.min.css">
       <DependentUpon>materialize.css</DependentUpon>
@@ -201,6 +215,7 @@
     <Content Include="content\font\roboto\Roboto-Thin.ttf" />
     <Content Include="content\font\roboto\Roboto-Thin.woff" />
     <Content Include="content\font\roboto\Roboto-Thin.woff2" />
+    <Content Include="content\icons\manifest.json" />
     <None Include="scripts\jquery-2.2.0.intellisense.js">
       <DependentUpon>jquery-2.2.0.js</DependentUpon>
     </None>
