@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Threading;
 using Swashbuckle.Application;
 using System.IO;
+using System.Web.Http.ExceptionHandling;
 
 [assembly: OwinStartup(typeof(WhoisASPNET.Startup))]
 
@@ -29,7 +30,27 @@ namespace WhoisASPNET
         {
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
 
+            UseWebAPI(app);
+
+            var fileSystem = new PhysicalFileSystem(AppDomain.CurrentDomain.BaseDirectory);
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                DefaultFileNames = new[] { "index.html" }.ToList(),
+                FileSystem = fileSystem
+            });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileSystem = fileSystem,
+                ServeUnknownFileTypes = false
+            });
+        }
+
+        private static void UseWebAPI(IAppBuilder app)
+        {
             var config = new HttpConfiguration();
+
+            // Install unhandled exception global logger
+            config.Services.Replace(typeof(IExceptionLogger), new ExceptionLoggerTraceRedirector());
 
             // Fix: CORS support of WebAPI doesn't work on mono. http://stackoverflow.com/questions/31590869/web-api-2-post-request-not-working-on-mono
             if (Type.GetType("Mono.Runtime") != null) config.MessageHandlers.Add(new MonoPatchingDelegatingHandler());
@@ -49,18 +70,6 @@ namespace WhoisASPNET
 
             config.MapHttpAttributeRoutes();
             app.UseWebApi(config);
-
-            var fileSystem = new PhysicalFileSystem(AppDomain.CurrentDomain.BaseDirectory);
-            app.UseDefaultFiles(new DefaultFilesOptions
-            {
-                DefaultFileNames = new[] { "index.html" }.ToList(),
-                FileSystem = fileSystem
-            });
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileSystem = fileSystem,
-                ServeUnknownFileTypes = false
-            });
         }
 
         /// <summary>
