@@ -13,9 +13,9 @@ using Swashbuckle.Application;
 using System.IO;
 using System.Web.Http.ExceptionHandling;
 
-[assembly: OwinStartup(typeof(WhoisASPNET.Startup))]
+[assembly: OwinStartup(typeof(WHOISClientWebApp.Startup))]
 
-namespace WhoisASPNET
+namespace WHOISClientWebApp
 {
     /// <summary>
     /// OWIN StartUp

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Whois.NET;
 
-namespace WhoisASPNET
+namespace WHOISClientWebApp
 {
     /// <summary>
     /// Wrpper class for WhoisResponse.

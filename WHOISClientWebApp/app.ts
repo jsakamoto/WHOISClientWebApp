@@ -1,4 +1,4 @@
-﻿namespace WhoisASPNET {
+﻿namespace WHOISClientWebApp {
     export class MainController {
         private whoisApi: ng.resource.IResourceClass<WhoisResponse>;
 

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Web.Http.ExceptionHandling;
 
-namespace WhoisASPNET
+namespace WHOISClientWebApp
 {
     /// <summary>
     /// Represents an unhandled exception logger.

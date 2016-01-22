@@ -1,4 +1,4 @@
-﻿namespace WhoisASPNET {
+﻿namespace WHOISClientWebApp {
     export interface WhoisResponse {
         RespondedServers: string[];
         Raw: string;

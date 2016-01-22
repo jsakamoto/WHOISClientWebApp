@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 using WebApi.OutputCache.V2;
 using Whois.NET;
 
-namespace WhoisASPNET
+namespace WHOISClientWebApp
 {
     /// <summary>
     /// (Summary of WhoisApiController)

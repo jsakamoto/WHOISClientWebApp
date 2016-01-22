@@ -1,5 +1,5 @@
-var WhoisASPNET;
-(function (WhoisASPNET) {
+var WHOISClientWebApp;
+(function (WHOISClientWebApp) {
     var MainController = (function () {
         function MainController($scope, $resource, $cookies, $location) {
             var _this = this;
@@ -36,10 +36,10 @@ var WhoisASPNET;
         };
         return MainController;
     })();
-    WhoisASPNET.MainController = MainController;
+    WHOISClientWebApp.MainController = MainController;
     angular
         .module('app', ['ngResource', 'ngCookies'])
         .config(["$locationProvider", function ($locationProvider) { return $locationProvider.html5Mode(true); }])
         .controller('mainController', MainController);
-})(WhoisASPNET || (WhoisASPNET = {}));
+})(WHOISClientWebApp || (WHOISClientWebApp = {}));
 //# sourceMappingURL=app.js.map

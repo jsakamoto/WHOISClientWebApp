@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhoisASPNET", "WhoisASPNET\WhoisASPNET.csproj", "{14AF1CE6-4C90-4F06-92F7-9423529A1B05}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77F8631E-D310-4C1C-9932-A908B53F236C}"
 	ProjectSection(SolutionItems) = preProject
 		Procfile = Procfile
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WHOISClientWebApp", "WHOISClientWebApp\WHOISClientWebApp.csproj", "{14AF1CE6-4C90-4F06-92F7-9423529A1B05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
