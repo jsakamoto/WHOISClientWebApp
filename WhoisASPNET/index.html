@@ -13,10 +13,7 @@
 <body ng-app="app" ng-controller="mainController as ctrl" ng-cloak>
     <nav class="grey darken-2" role="navigation">
         <div class="nav-wrapper container">
-            <div id="logo-container" class="brand-logo">Whois ASP.NET</div>
-            <ul class="right">
-                <li><a target="_blank" href="swagger/ui/index">API Document</a></li>
-            </ul>
+            <div id="logo-container" class="brand-logo">Whois Client/   ASP.NET</div>
         </div>
     </nav>
 
@@ -25,13 +22,13 @@
             <form name="queryform" class="col s12 m6 l5" ng-submit="ctrl.executeQuery(queryform.$valid)" novalidate>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" id="query" ng-model="ctrl.query" placeholder="Domain or IP Address to query" required/>
+                        <input type="text" id="query" ng-model="ctrl.query" placeholder="Domain or IP Address to query" required />
                         <label for="query">Query</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" id="server" ng-model="ctrl.server" placeholder="(optional) Host name or IP Address of whois server"/>
+                        <input type="text" id="server" ng-model="ctrl.server" placeholder="(optional) Host name or IP Address of whois server" />
                         <label for="server">Whois server</label>
                     </div>
                 </div>
@@ -59,18 +56,36 @@
                     <div>{{ctrl.response.OrganizationName}}</div>
                     <h4>Raw response text</h4>
                     <pre>{{ctrl.response.Raw}}</pre>
-                </div>            </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer class="page-footer grey darken-2">
         <div class="container">
             <div class="row">
-                <div class="col s12 grey-text">
-                    <p>
-                        GNU GPL v2 | Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-                    </p>
+                <div class="col m4 s12">
+                    <h5 class="grey-text text-lighten-1">API</h5>
+                    <ul>
+                        <li><a target="_blank" class="grey-text" href="swagger/ui/index">API document</a></li>
+                    </ul>
                 </div>
+                <div class="col m4 s12">
+                    <h5 class="grey-text text-lighten-1">Powered by</h5>
+                    <ul>
+                        <li><a target="_blank" class="grey-text text-lighten-1" href="http://www.nuget.org/packages/WhoisClient.NET/">WhoisClient.NET</a></li>
+                        <li><a target="_blank" class="grey-text" href="http://www.asp.net/web-api">ASP.NET Web API</a></li>
+                        <li><a target="_blank" class="grey-text" href="http://www.typescriptlang.org/">TypeScript</a></li>
+                        <li><a target="_blank" class="grey-text" href="https://angularjs.org/">AngularJS</a></li>
+                        <li><a target="_blank" class="grey-text" href="http://materializecss.com/">Materialize</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                GNU GPL v2 | Source code on <a target="_blank" class="grey-text text-lighten-4" href="#">GitHub</a>
+                <!--Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>-->
             </div>
         </div>
     </footer>
