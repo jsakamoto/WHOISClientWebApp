@@ -42,3 +42,4 @@ var WhoisASPNET;
         .config(["$locationProvider", function ($locationProvider) { return $locationProvider.html5Mode(true); }])
         .controller('mainController', MainController);
 })(WhoisASPNET || (WhoisASPNET = {}));
+//# sourceMappingURL=app.js.map
