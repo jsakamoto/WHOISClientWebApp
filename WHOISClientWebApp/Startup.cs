@@ -28,6 +28,11 @@ namespace WHOISClientWebApp
         public static bool IsRuntimeMono { get; } = Type.GetType("Mono.Runtime") != null;
 
         /// <summary>
+        /// Get the status of Swagger feature avaliable or not.
+        /// </summary>
+        public static bool AvailableSwagger { get { return !IsRuntimeMono; } }
+
+        /// <summary>
         /// Configure OWIN web application.
         /// </summary>
         /// <param name="app"></param>
@@ -38,16 +43,13 @@ namespace WHOISClientWebApp
             UseWebAPI(app);
 
             var fileSystem = new PhysicalFileSystem(AppDomain.CurrentDomain.BaseDirectory);
-            app.UseDefaultFiles(new DefaultFilesOptions
-            {
-                DefaultFileNames = new[] { "index.html" }.ToList(),
-                FileSystem = fileSystem
-            });
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileSystem = fileSystem,
                 ServeUnknownFileTypes = false
             });
+
+            app.UseNancy();
         }
 
         private static void UseWebAPI(IAppBuilder app)
@@ -62,7 +64,7 @@ namespace WHOISClientWebApp
             config.EnableCors();
 
             // Configure Swashbuckle.
-            if (!IsRuntimeMono)
+            if (AvailableSwagger)
             {
                 config.EnableSwagger(c =>
                 {
