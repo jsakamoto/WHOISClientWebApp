@@ -241,6 +241,11 @@
     <Content Include="content\font\roboto\Roboto-Thin.woff" />
     <Content Include="content\font\roboto\Roboto-Thin.woff2" />
     <Content Include="content\icons\manifest.json" />
+    <Content Include="content\font\roboto\Roboto-Bold.eot" />
+    <Content Include="content\font\roboto\Roboto-Light.eot" />
+    <Content Include="content\font\roboto\Roboto-Medium.eot" />
+    <Content Include="content\font\roboto\Roboto-Regular.eot" />
+    <Content Include="content\font\roboto\Roboto-Thin.eot" />
     <None Include="scripts\jquery-2.2.0.intellisense.js">
       <DependentUpon>jquery-2.2.0.js</DependentUpon>
     </None>
@@ -314,17 +319,17 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49863</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49863/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
+          <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-          <servers defaultServer="OwinHost for Heroku">
+          <servers defaultServer="">
             <server name="OwinHost for Heroku" exePath="{solutiondir}\packages\OwinHostForHeroku.1.0.1.4\tools\OwinHostForHeroku.exe" cmdArgs="{url}" url="http://localhost:49863/" workingDir="{projectdir}" />
           </servers>
         </WebProjectProperties>
