@@ -12,20 +12,20 @@ using Whois.NET;
 namespace WHOISClientWebApp
 {
     /// <summary>
-    /// (Summary of WhoisApiController)
+    /// WHOIS Client Web App API Controller
     /// </summary>
     [RoutePrefix("api"), EnableCors("*", "*", "*")]
     public class WhoisApiController : ApiController
     {
         // GET api/whois/:query
         /// <summary>
-        /// (Summary of Query_V2)
+        /// Send WHOIS protocol request recursive and return structured response.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="server">optional.</param>
-        /// <param name="port">optional. default value is 43.</param>
-        /// <param name="encoding">optional. default value is 'us-ascii'.</param>
-        /// <returns>WhoisResponse object</returns>
+        /// <param name="query">Domain name or IP address to query WHOIS information.</param>
+        /// <param name="server">[optional] Host name or IP address of WHOIS server.</param>
+        /// <param name="port">[optional] Port number of WHOIS protocol. default value is 43.</param>
+        /// <param name="encoding">[optional] Encoding name to decode the text which responded from WHOIS servers. default value is 'us-ascii'.</param>
+        /// <returns>Structured responce of WHOIS protocol.</returns>
         [HttpGet, Route("whois/{query}"), CacheOutput(NoCache = true)]
         public WhoisResponseWrapper Query_V2(string query, string server = null, int port = 43, string encoding = "us-ascii")
         {
@@ -35,14 +35,14 @@ namespace WHOISClientWebApp
 
         // GET /api/query/
         /// <summary>
-        /// (Summary of Query_V1)
+        /// [DEPRECATED] Send WHOIS protocol request recursive and return structured response.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="server">optional.</param>
-        /// <param name="port">optional. default value is 43.</param>
-        /// <param name="encoding">optional. default value is 'us-ascii'.</param>
-        /// <returns>WhoisResponse object</returns>
-        [HttpGet, Route("query"), CacheOutput(NoCache = true), Obsolete("OMG")]
+        /// <param name="query">Domain name or IP address to query WHOIS information.</param>
+        /// <param name="server">[optional] Host name or IP address of WHOIS server.</param>
+        /// <param name="port">[optional] Port number of WHOIS protocol. default value is 43.</param>
+        /// <param name="encoding">[optional] Encoding name to decode the text which responded from WHOIS servers. default value is 'us-ascii'.</param>
+        /// <returns>Structured responce of WHOIS protocol.</returns>
+        [HttpGet, Route("query"), CacheOutput(NoCache = true), Obsolete("Use Query_v2 instead.")]
         public WhoisResponseWrapper Query_V1(string query, string server = null, int port = 43, string encoding = "us-ascii")
         {
             return Query_V2(query, server, port, encoding);
@@ -50,13 +50,13 @@ namespace WHOISClientWebApp
 
         // GET /api/rawquery/
         /// <summary>
-        /// (Summary of RawQuery)
+        /// Send WHOIS protocol request to single server simply and return response as is.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="server">host name or IP address of whois server.</param>
-        /// <param name="port">optional. default value is 43.</param>
-        /// <param name="encoding">optional. default value is 'us-ascii'.</param>
-        /// <returns>response text of whois protocol</returns>
+        /// <param name="query">Domain name or IP address to query WHOIS information.</param>
+        /// <param name="server">Host name or IP address of WHOIS server.</param>
+        /// <param name="port">[optional] Port number of WHOIS protocol. default value is 43.</param>
+        /// <param name="encoding">[optional] Encoding name to decode the text which responded from WHOIS servers. default value is 'us-ascii'.</param>
+        /// <returns>Response text of whois protocol</returns>
         [HttpGet, Route("rawquery"), CacheOutput(NoCache = true)]
         public string RawQuery(string query, string server, int port = 43, string encoding = "us-ascii")
         {
@@ -67,7 +67,7 @@ namespace WHOISClientWebApp
 
         // GET api/encodings
         /// <summary>
-        /// (Summary of GetEncodings)
+        /// Get all encoding names that can specify the 'encoding' argument of APIs.
         /// </summary>
         /// <returns>An array of encoding Web names.</returns>
         [Route("encodings"), CacheOutput(ClientTimeSpan = 300, Private = false)]

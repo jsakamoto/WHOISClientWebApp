@@ -61,6 +61,7 @@ namespace WHOISClientWebApp
             {
                 c.SingleApiVersion("v1", null);
                 c.IncludeXmlComments(GetXmlCommentsPath());
+                c.IgnoreObsoleteActions();
             })
             .EnableSwaggerUi(c =>
             {
