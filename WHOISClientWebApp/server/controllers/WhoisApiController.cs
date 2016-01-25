@@ -56,7 +56,7 @@ namespace WHOISClientWebApp
         /// <param name="server">Host name or IP address of WHOIS server.</param>
         /// <param name="port">[optional] Port number of WHOIS protocol. default value is 43.</param>
         /// <param name="encoding">[optional] Encoding name to decode the text which responded from WHOIS servers. default value is 'us-ascii'.</param>
-        /// <returns>Response text of whois protocol</returns>
+        /// <returns>Response text of WHOIS protocol</returns>
         [HttpGet, Route("rawquery"), CacheOutput(NoCache = true)]
         public string RawQuery(string query, string server, int port = 43, string encoding = "us-ascii")
         {
