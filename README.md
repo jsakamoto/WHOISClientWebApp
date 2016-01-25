@@ -1,6 +1,7 @@
 # WHOIS Client Web App/API
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://azuredeploy.net/)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Summary
 

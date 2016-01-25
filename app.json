@@ -1,0 +1,8 @@
+{
+  "name": "whois-client-webapp",
+  "buildpacks": [
+    {
+      "url": "https://github.com/friism/heroku-buildpack-mono"
+    }
+  ]
+}
