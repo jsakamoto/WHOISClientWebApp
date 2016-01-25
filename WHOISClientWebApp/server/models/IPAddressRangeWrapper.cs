@@ -11,24 +11,26 @@ namespace WHOISClientWebApp
     /// </summary>
     public class IPAddressRangeWrapper
     {
-        private IPAddressRange _IPAddressRange;
-
         /// <summary>
         /// Begin of IP address in range.
         /// </summary>
-        public string Begin => _IPAddressRange?.Begin.ToString();
+        public string Begin { get; private set; }
 
         /// <summary>
         /// End of IP address in range.
         /// </summary>
-        public string End => _IPAddressRange?.End.ToString();
+        public string End { get; private set; }
 
         /// <summary>
         /// Wrpper class for IPAddressRange.
         /// </summary>
         public IPAddressRangeWrapper(IPAddressRange ipaddressRange)
         {
-            _IPAddressRange = ipaddressRange;
+            if (ipaddressRange != null)
+            {
+                Begin = ipaddressRange.Begin.ToString();
+                End = ipaddressRange.End.ToString();
+            }
         }
     }
 }

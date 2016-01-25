@@ -295,18 +295,18 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49863</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49863/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
+          <UseCustomServer>True</UseCustomServer>
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-          <servers defaultServer="">
-            <server name="OwinHost for Heroku" exePath="{solutiondir}\packages\OwinHostForHeroku.1.0.1.4\tools\OwinHostForHeroku.exe" cmdArgs="{url}" url="http://localhost:12345/" workingDir="{projectdir}" />
+          <servers defaultServer="OwinHost for Heroku">
+            <server name="OwinHost for Heroku" exePath="{solutiondir}\packages\OwinHostForHeroku.1.0.1.4\tools\OwinHostForHeroku.exe" cmdArgs="{url}" url="http://localhost:49863/" workingDir="{projectdir}" />
           </servers>
         </WebProjectProperties>
       </FlavorProperties>

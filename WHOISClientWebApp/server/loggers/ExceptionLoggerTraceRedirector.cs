@@ -17,8 +17,11 @@ namespace WHOISClientWebApp
         public override void Log(ExceptionLoggerContext context)
         {
             var logtext = new StringBuilder();
-            logtext.AppendLine($"Request: {context.Request}").AppendLine();
-            logtext.AppendLine($"Exception: {context.Exception}");
+            logtext.AppendFormat("Request: {0}", context.Request)
+                .AppendLine()
+                .AppendLine();
+            logtext.AppendFormat("Exception: {0}", context.Exception)
+                .AppendLine();
             Trace.TraceError(logtext.ToString());
         }
     }

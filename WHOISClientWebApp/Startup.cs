@@ -23,6 +23,11 @@ namespace WHOISClientWebApp
     public class Startup
     {
         /// <summary>
+        /// Get the runtime type is mono or not.
+        /// </summary>
+        public static bool IsRuntimeMono { get; } = Type.GetType("Mono.Runtime") != null;
+
+        /// <summary>
         /// Configure OWIN web application.
         /// </summary>
         /// <param name="app"></param>
@@ -53,20 +58,23 @@ namespace WHOISClientWebApp
             config.Services.Replace(typeof(IExceptionLogger), new ExceptionLoggerTraceRedirector());
 
             // Fix: CORS support of WebAPI doesn't work on mono. http://stackoverflow.com/questions/31590869/web-api-2-post-request-not-working-on-mono
-            if (Type.GetType("Mono.Runtime") != null) config.MessageHandlers.Add(new MonoPatchingDelegatingHandler());
+            if (IsRuntimeMono) config.MessageHandlers.Add(new MonoPatchingDelegatingHandler());
             config.EnableCors();
 
             // Configure Swashbuckle.
-            config.EnableSwagger(c =>
+            if (!IsRuntimeMono)
             {
-                c.SingleApiVersion("v1", null);
-                c.IncludeXmlComments(GetXmlCommentsPath());
-            })
-            .EnableSwaggerUi(c =>
-            {
-                c.EnableDiscoveryUrlSelector();
-                c.DocExpansion(DocExpansion.List);
-            });
+                config.EnableSwagger(c =>
+                {
+                    c.SingleApiVersion("v1", null);
+                    c.IncludeXmlComments(GetXmlCommentsPath());
+                })
+                .EnableSwaggerUi(c =>
+                {
+                    c.EnableDiscoveryUrlSelector();
+                    c.DocExpansion(DocExpansion.List);
+                });
+            }
 
             config.MapHttpAttributeRoutes();
             app.UseWebApi(config);

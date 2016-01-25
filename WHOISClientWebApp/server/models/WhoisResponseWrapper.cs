@@ -11,22 +11,20 @@ namespace WHOISClientWebApp
     /// </summary>
     public class WhoisResponseWrapper
     {
-        private WhoisResponse _Response;
-
         /// <summary>
         /// Organization name.
         /// </summary>
-        public string OrganizationName  => _Response?.OrganizationName;
+        public string OrganizationName { get; private set; }
 
         /// <summary>
         /// Raw response text of WHOIS protocol.
         /// </summary>
-        public string Raw => _Response?.Raw;
+        public string Raw { get; private set; }
 
         /// <summary>
         /// Responded servers host name.
         /// </summary>
-        public string[] RespondedServers => _Response?.RespondedServers ?? new string[0];
+        public string[] RespondedServers { get; private set; }
 
         /// <summary>
         /// Range of IP address.
@@ -38,8 +36,17 @@ namespace WHOISClientWebApp
         /// </summary>
         public WhoisResponseWrapper(WhoisResponse response)
         {
-            _Response = response;
-            AddressRange = new IPAddressRangeWrapper(response?.AddressRange);
+            if (response != null)
+            {
+                OrganizationName = response.OrganizationName;
+                RespondedServers = response.RespondedServers;
+                Raw = response.Raw;
+            }
+            else
+            {
+                RespondedServers = new string[0];
+            }
+            AddressRange = new IPAddressRangeWrapper(response == null ? null : response.AddressRange);
         }
     }
 }
