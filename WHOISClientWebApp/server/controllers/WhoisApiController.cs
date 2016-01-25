@@ -30,7 +30,7 @@ namespace WHOISClientWebApp
         public WhoisResponseWrapper Query_V2(string query, string server = null, int port = 43, string encoding = "us-ascii")
         {
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentException("required 'query' parameter.", "query");
-            return new WhoisResponseWrapper(WhoisClient.Query(query, server, port, Encoding.GetEncoding(encoding)));
+            return new WhoisResponseWrapper(WhoisClient.Query(query, server, port, ParseEncoding(encoding)));
         }
 
         // GET /api/query/
@@ -62,7 +62,7 @@ namespace WHOISClientWebApp
         {
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentException("required 'query' parameter.", "query");
             if (string.IsNullOrWhiteSpace(server)) throw new ArgumentException("required 'server' parameter.", "server");
-            return WhoisClient.RawQuery(query, server, port, Encoding.GetEncoding(encoding));
+            return WhoisClient.RawQuery(query, server, port, ParseEncoding(encoding));
         }
 
         // GET api/encodings
@@ -79,6 +79,16 @@ namespace WHOISClientWebApp
                 .ToArray()
                 .Distinct()
                 .ToArray();
+        }
+
+        private static Encoding ParseEncoding(string encodingName)
+        {
+            encodingName = encodingName.ToLower();
+            var encoding = Encoding.GetEncodings()
+                .Select(e => e.GetEncoding())
+                .FirstOrDefault(e => e.WebName.ToLower() == encodingName);
+            if (encoding == null) throw new ArgumentException("Unknown encoding.", "encoding");
+            return encoding;
         }
     }
 }

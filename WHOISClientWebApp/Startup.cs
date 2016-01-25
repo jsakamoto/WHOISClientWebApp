@@ -23,6 +23,16 @@ namespace WHOISClientWebApp
     public class Startup
     {
         /// <summary>
+        /// Get the runtime type is mono or not.
+        /// </summary>
+        public static bool IsRuntimeMono { get; } = Type.GetType("Mono.Runtime") != null;
+
+        /// <summary>
+        /// Get the status of Swagger feature avaliable or not.
+        /// </summary>
+        public static bool AvailableSwagger { get { return !IsRuntimeMono; } }
+
+        /// <summary>
         /// Configure OWIN web application.
         /// </summary>
         /// <param name="app"></param>
@@ -33,16 +43,13 @@ namespace WHOISClientWebApp
             UseWebAPI(app);
 
             var fileSystem = new PhysicalFileSystem(AppDomain.CurrentDomain.BaseDirectory);
-            app.UseDefaultFiles(new DefaultFilesOptions
-            {
-                DefaultFileNames = new[] { "index.html" }.ToList(),
-                FileSystem = fileSystem
-            });
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileSystem = fileSystem,
                 ServeUnknownFileTypes = false
             });
+
+            app.UseNancy();
         }
 
         private static void UseWebAPI(IAppBuilder app)
@@ -53,21 +60,24 @@ namespace WHOISClientWebApp
             config.Services.Replace(typeof(IExceptionLogger), new ExceptionLoggerTraceRedirector());
 
             // Fix: CORS support of WebAPI doesn't work on mono. http://stackoverflow.com/questions/31590869/web-api-2-post-request-not-working-on-mono
-            if (Type.GetType("Mono.Runtime") != null) config.MessageHandlers.Add(new MonoPatchingDelegatingHandler());
+            if (IsRuntimeMono) config.MessageHandlers.Add(new MonoPatchingDelegatingHandler());
             config.EnableCors();
 
             // Configure Swashbuckle.
-            config.EnableSwagger(c =>
+            if (AvailableSwagger)
             {
-                c.SingleApiVersion("v1", null);
-                c.IncludeXmlComments(GetXmlCommentsPath());
-                c.IgnoreObsoleteActions();
-            })
-            .EnableSwaggerUi(c =>
-            {
-                c.EnableDiscoveryUrlSelector();
-                c.DocExpansion(DocExpansion.List);
-            });
+                config.EnableSwagger(c =>
+                {
+                    c.SingleApiVersion("v1", null);
+                    c.IncludeXmlComments(GetXmlCommentsPath());
+                    c.IgnoreObsoleteActions();
+                })
+                .EnableSwaggerUi(c =>
+                {
+                    c.EnableDiscoveryUrlSelector();
+                    c.DocExpansion(DocExpansion.List);
+                });
+            }
 
             config.MapHttpAttributeRoutes();
             app.UseWebApi(config);
