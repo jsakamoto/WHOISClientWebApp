@@ -23,3 +23,25 @@ body {
     background-color: #ccc !important;
     pointer-events: none;
 }
+
+.brand-logo {
+    font-family: Impact, "Roboto", sans-serif;
+}
+
+.page-footer {
+    a:hover {
+        text-decoration: underline;
+
+        &.grey-text {
+            color: #bdbdbd !important;
+
+            &.text-lighten-1 {
+                color: #cdcdcd !important;
+            }
+
+            &.text-lighten-4 {
+                color: #fff !important;
+            }
+        }
+    }
+}

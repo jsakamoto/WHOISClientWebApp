@@ -14,3 +14,15 @@
   background-color: #ccc !important;
   pointer-events: none; }
 
+.brand-logo {
+  font-family: Impact, "Roboto", sans-serif; }
+
+.page-footer a:hover {
+  text-decoration: underline; }
+  .page-footer a:hover.grey-text {
+    color: #bdbdbd !important; }
+    .page-footer a:hover.grey-text.text-lighten-1 {
+      color: #cdcdcd !important; }
+    .page-footer a:hover.grey-text.text-lighten-4 {
+      color: #fff !important; }
+
