@@ -9,7 +9,9 @@ This is source code repository of the Web app which allows you to look up WHOIS 
 
 ## Official site
 
-**[https://whois.azurewebsites.net](https://whois.azurewebsites.net)**
+**Web UI - [https://whois.azurewebsites.net](https://whois.azurewebsites.net)**
+
+**API Document - [https://whois.azurewebsites.net/swagger/ui/index](https://whois.azurewebsites.net/swagger/ui/index)**
 
 ## API document
 
@@ -110,6 +112,7 @@ curl -H "Accept: application/json" "{host}/api/encodings"
 - Server side codes are written by **C#** with **ASP.NET Web API** based OWIN.
 - Client side codes are written by **TypeScript** with **AngularJS**.
 - To talk with WHOIS servers, using **WhoisClient.NET** [![NuGet Package](https://img.shields.io/nuget/v/WhoisClient.NET.svg)](https://www.nuget.org/packages/WhoisClient.NET/)
+- To support [Swagger](http://swagger.io/) specification and provide API document UI, using **Swashbuckle.Core** [![NuGet Package](https://img.shields.io/nuget/v/Swashbuckle.Core.svg)](https://www.nuget.org/packages/Swashbuckle.Core/)
 - The site design was made with **[Materialize](http://materializecss.com/)**
 
 ## License
