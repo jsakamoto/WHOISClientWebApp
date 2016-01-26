@@ -68,7 +68,8 @@ namespace WHOISClientWebApp
             {
                 config.EnableSwagger(c =>
                 {
-                    c.SingleApiVersion("v1", null);
+                    c.SingleApiVersion("v1", "WHOIS Client Web API")
+                        .Description("This API allows you to look up WHOIS information via HTTP protocol.");
                     c.IncludeXmlComments(GetXmlCommentsPath());
                     c.IgnoreObsoleteActions();
                 })
