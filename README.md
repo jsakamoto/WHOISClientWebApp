@@ -107,9 +107,10 @@ curl -H "Accept: application/json" "{host}/api/encodings"
 
 ## Implementation
 
-Server side codes are written by C# with ASP.NET Web API based OWIN.
-
-Client side codes are written by TypeScript with AngularJS.
+- Server side codes are written by **C#** with **ASP.NET Web API** based OWIN.
+- Client side codes are written by **TypeScript** with **AngularJS**.
+- To talk with WHOIS servers, using **WhoisClient.NET** [![NuGet Package](https://img.shields.io/nuget/v/WhoisClient.NET.svg)](https://www.nuget.org/packages/WhoisClient.NET/)
+- The site design was made with **[Materialize](http://materializecss.com/)**
 
 ## License
 
