@@ -46,8 +46,8 @@
     <DocumentationFile>bin\WHOISClientWebApp.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IPAddressRange, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IPAddressRange.1.0.2.0\lib\net40\IPAddressRange.dll</HintPath>
+    <Reference Include="IPAddressRange, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IPAddressRange.1.5.0.0\lib\net40\IPAddressRange.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -148,8 +148,8 @@
       <HintPath>..\packages\Strathweb.CacheOutput.WebApi2.0.9.0\lib\net45\WebApi.OutputCache.V2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WhoisClient, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WhoisClient.NET.1.0.2.0\lib\net40\WhoisClient.dll</HintPath>
+    <Reference Include="WhoisClient, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WhoisClient.NET.1.1.0.0\lib\net40\WhoisClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
