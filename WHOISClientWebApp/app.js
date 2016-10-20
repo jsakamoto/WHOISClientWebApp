@@ -35,7 +35,7 @@ var WHOISClientWebApp;
             });
         };
         return MainController;
-    })();
+    }());
     WHOISClientWebApp.MainController = MainController;
     angular
         .module('app', ['ngResource', 'ngCookies'])
