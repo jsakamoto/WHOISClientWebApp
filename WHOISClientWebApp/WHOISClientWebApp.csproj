@@ -24,7 +24,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
-    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -148,8 +148,8 @@
       <HintPath>..\packages\Strathweb.CacheOutput.WebApi2.0.9.0\lib\net45\WebApi.OutputCache.V2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WhoisClient, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WhoisClient.NET.1.1.0.0\lib\net40\WhoisClient.dll</HintPath>
+    <Reference Include="WhoisClient, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WhoisClient.NET.2.0.0\lib\net45\WhoisClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

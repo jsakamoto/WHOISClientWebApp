@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WebApi.OutputCache.V2;
@@ -27,10 +25,11 @@ namespace WHOISClientWebApp
         /// <param name="encoding">[optional] Encoding name to decode the text which responded from WHOIS servers. default value is 'us-ascii'.</param>
         /// <returns>Structured responce of WHOIS protocol.</returns>
         [HttpGet, Route("whois/{query}"), CacheOutput(NoCache = true)]
-        public WhoisResponseWrapper Query_V2(string query, string server = null, int port = 43, string encoding = "us-ascii")
+        public async Task<WhoisResponseWrapper> Query_V2(string query, string server = null, int port = 43, string encoding = "us-ascii")
         {
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentException("required 'query' parameter.", "query");
-            return new WhoisResponseWrapper(WhoisClient.Query(query, server, port, ParseEncoding(encoding)));
+            var response = await WhoisClient.QueryAsync(query, server, port, ParseEncoding(encoding));
+            return new WhoisResponseWrapper(response);
         }
 
         // GET /api/query/
@@ -43,9 +42,9 @@ namespace WHOISClientWebApp
         /// <param name="encoding">[optional] Encoding name to decode the text which responded from WHOIS servers. default value is 'us-ascii'.</param>
         /// <returns>Structured responce of WHOIS protocol.</returns>
         [HttpGet, Route("query"), CacheOutput(NoCache = true), Obsolete("Use Query_v2 instead.")]
-        public WhoisResponseWrapper Query_V1(string query, string server = null, int port = 43, string encoding = "us-ascii")
+        public async Task<WhoisResponseWrapper> Query_V1(string query, string server = null, int port = 43, string encoding = "us-ascii")
         {
-            return Query_V2(query, server, port, encoding);
+            return await Query_V2(query, server, port, encoding);
         }
 
         // GET /api/rawquery/
@@ -58,11 +57,11 @@ namespace WHOISClientWebApp
         /// <param name="encoding">[optional] Encoding name to decode the text which responded from WHOIS servers. default value is 'us-ascii'.</param>
         /// <returns>Response text of WHOIS protocol</returns>
         [HttpGet, Route("rawquery"), CacheOutput(NoCache = true)]
-        public string RawQuery(string query, string server, int port = 43, string encoding = "us-ascii")
+        public async Task<string> RawQuery(string query, string server, int port = 43, string encoding = "us-ascii")
         {
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentException("required 'query' parameter.", "query");
             if (string.IsNullOrWhiteSpace(server)) throw new ArgumentException("required 'server' parameter.", "server");
-            return WhoisClient.RawQuery(query, server, port, ParseEncoding(encoding));
+            return await WhoisClient.RawQueryAsync(query, server, port, ParseEncoding(encoding));
         }
 
         // GET api/encodings
