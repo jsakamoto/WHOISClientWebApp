@@ -1,108 +1,73 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Web.Http;
-using Microsoft.Owin;
-using Microsoft.Owin.FileSystems;
-using Microsoft.Owin.StaticFiles;
-using Owin;
-using System.Net.Http;
-using System.Threading;
-using Swashbuckle.Application;
 using System.IO;
-using System.Web.Http.ExceptionHandling;
-
-[assembly: OwinStartup(typeof(WHOISClientWebApp.Startup))]
+using System.Text;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WHOISClientWebApp
 {
-    /// <summary>
-    /// OWIN StartUp
-    /// </summary>
     public class Startup
     {
-        /// <summary>
-        /// Get the runtime type is mono or not.
-        /// </summary>
-        public static bool IsRuntimeMono { get; } = Type.GetType("Mono.Runtime") != null;
-
-        /// <summary>
-        /// Get the status of Swagger feature avaliable or not.
-        /// </summary>
-        public static bool AvailableSwagger { get { return !IsRuntimeMono; } }
-
-        /// <summary>
-        /// Configure OWIN web application.
-        /// </summary>
-        /// <param name="app"></param>
-        public void Configuration(IAppBuilder app)
+        public Startup(IHostingEnvironment env)
         {
-            // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
-
-            UseWebAPI(app);
-
-            var fileSystem = new PhysicalFileSystem(AppDomain.CurrentDomain.BaseDirectory);
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileSystem = fileSystem,
-                ServeUnknownFileTypes = false
-            });
-
-            app.UseNancy();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
-        private static void UseWebAPI(IAppBuilder app)
+        public IConfigurationRoot Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
         {
-            var config = new HttpConfiguration();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            // Install unhandled exception global logger
-            config.Services.Replace(typeof(IExceptionLogger), new ExceptionLoggerTraceRedirector());
+            // Add framework services.
 
-            // Fix: CORS support of WebAPI doesn't work on mono. http://stackoverflow.com/questions/31590869/web-api-2-post-request-not-working-on-mono
-            if (IsRuntimeMono) config.MessageHandlers.Add(new MonoPatchingDelegatingHandler());
-            config.EnableCors();
+            services.AddCors(option => option.AddPolicy("Any", policy => policy
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            ));
 
-            // Configure Swashbuckle.
-            if (AvailableSwagger)
-            {
-                config.EnableSwagger(c =>
+            services
+                .AddMvc()
+                .AddJsonOptions(options =>
                 {
-                    c.SingleApiVersion("v1", "WHOIS Client Web API")
-                        .Description("This API allows you to look up WHOIS information via HTTP protocol.");
-                    c.IncludeXmlComments(GetXmlCommentsPath());
-                    c.IgnoreObsoleteActions();
-                })
-                .EnableSwaggerUi(c =>
-                {
-                    c.EnableDiscoveryUrlSelector();
-                    c.DocExpansion(DocExpansion.List);
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 });
-            }
 
-            config.MapHttpAttributeRoutes();
-            app.UseWebApi(config);
-        }
-
-        /// <summary>
-        /// Work around a bug in mono's implementation of System.Net.Http where calls to HttpRequestMessage.Headers.Host will fail unless we set it explicitly.
-        /// This should be transparent and cause no side effects.
-        /// </summary>
-        private class MonoPatchingDelegatingHandler : DelegatingHandler
-        {
-            protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+            services.AddSwaggerGen(option =>
             {
-                request.Headers.Host = request.Headers.GetValues("Host").FirstOrDefault();
-                return await base.SendAsync(request, cancellationToken);
-            }
+                var xdocPath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "WHOISClientWebApp.xml");
+                option.IncludeXmlComments(xdocPath);
+                option.SwaggerDoc("v1", new Info { Title = "WHOIS Client Web API", Version = "v1" });
+            });
         }
 
-        private static string GetXmlCommentsPath()
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            return Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                "bin",
-                typeof(Startup).Assembly.GetName().Name + ".xml");
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(option =>
+            {
+                option.SwaggerEndpoint("/swagger/v1/swagger.json", "This API allows you to look up WHOIS information via HTTP protocol.");
+            });
+            // app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }
