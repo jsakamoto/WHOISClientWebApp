@@ -1,6 +1,8 @@
 import * as angular from 'angular';
 import 'angular-resource';
 import 'angular-cookies';
+import 'angular-loading-bar';
+import '../node_modules/angular-loading-bar/src/loading-bar.css';
 
 interface WhoisResponse {
     RespondedServers: string[];
@@ -9,7 +11,11 @@ interface WhoisResponse {
     AddressRange: { Begin: string; End: string };
 }
 
-const app = angular.module('app', ['ngResource', 'ngCookies']);
+const app = angular.module('app', ['ngResource', 'ngCookies', 'angular-loading-bar']);
+
+app.config(['cfpLoadingBarProvider', (cfpLoadingBarProvider: any) => {
+    cfpLoadingBarProvider.includeSpinner = false;
+}]);
 
 class MainController {
 

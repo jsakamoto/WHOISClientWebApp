@@ -3,7 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var angular = require("angular");
 require("angular-resource");
 require("angular-cookies");
-var app = angular.module('app', ['ngResource', 'ngCookies']);
+require("angular-loading-bar");
+require("../node_modules/angular-loading-bar/src/loading-bar.css");
+var app = angular.module('app', ['ngResource', 'ngCookies', 'angular-loading-bar']);
+app.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = false;
+    }]);
 var MainController = (function () {
     function MainController($scope, $resource, $cookies, $location) {
         var _this = this;
