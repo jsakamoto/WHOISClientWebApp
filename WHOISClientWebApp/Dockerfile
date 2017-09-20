@@ -3,4 +3,5 @@ ARG source
 WORKDIR /app
 EXPOSE 80
 COPY ${source:-obj/Docker/publish} .
-ENTRYPOINT ["dotnet", "WHOISClientWebApp.dll"]
+ENV PORT 80
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet WHOISClientWebApp.dll
