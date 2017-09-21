@@ -9,16 +9,24 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug - without Docker|Any CPU = Debug - without Docker|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		Release - without Docker|Any CPU = Release - without Docker|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Debug - without Docker|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Debug - without Docker|Any CPU.Build.0 = Debug|Any CPU
 		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Release - without Docker|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Release - without Docker|Any CPU.Build.0 = Release|Any CPU
 		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540F922E-F972-4BF2-8B59-5189694CBD94}.Debug - without Docker|Any CPU.ActiveCfg = Debug|Any CPU
 		{540F922E-F972-4BF2-8B59-5189694CBD94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{540F922E-F972-4BF2-8B59-5189694CBD94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540F922E-F972-4BF2-8B59-5189694CBD94}.Release - without Docker|Any CPU.ActiveCfg = Release|Any CPU
 		{540F922E-F972-4BF2-8B59-5189694CBD94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{540F922E-F972-4BF2-8B59-5189694CBD94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
