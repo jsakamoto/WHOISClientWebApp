@@ -31,6 +31,8 @@ namespace WHOISClientWebApp
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
+            services.AddSingleton<IConfiguration>(this.Configuration);
+
             // Add framework services.
 
             services.AddCors(option => option.AddPolicy("Any", policy => policy
