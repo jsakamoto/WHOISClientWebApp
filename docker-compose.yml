@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  whoisclientwebapp:
+    image: whoisclientwebapp
+    build:
+      context: ./WHOISClientWebApp
+      dockerfile: Dockerfile
