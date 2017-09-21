@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WHOISClientWebApp", "WHOISClientWebApp\WHOISClientWebApp.csproj", "{C1F3CF9E-A246-4D86-A64E-4A2C85725088}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{D519CE47-B6D9-48EF-ADE4-C41AE24CF330}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{540F922E-F972-4BF2-8B59-5189694CBD94}"
 EndProject
 Global

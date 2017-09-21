@@ -1,7 +1,9 @@
 *.user
 *.suo
+*.pubxml
 bin/
 obj/
 packages/
 .vs/
 node_modules/
+yarn-error.log

@@ -3,7 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var angular = require("angular");
 require("angular-resource");
 require("angular-cookies");
-var app = angular.module('app', ['ngResource', 'ngCookies']);
+require("angular-loading-bar");
+require("../node_modules/angular-loading-bar/src/loading-bar.css");
+require("./site.scss");
+var app = angular.module('app', ['ngResource', 'ngCookies', 'angular-loading-bar']);
+app.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = false;
+    }]);
 var MainController = (function () {
     function MainController($scope, $resource, $cookies, $location) {
         var _this = this;
@@ -12,7 +18,14 @@ var MainController = (function () {
         this.encoding = $cookies.get('encoding') || 'us-ascii';
         this.whoisApi = $resource('/api/whois/:query');
         this.encodings = $resource('/api/encodings').query(function () {
-            setTimeout(function () { $('select').material_select(); }, 0);
+            setTimeout(function () {
+                var data = _this.encodings.reduce(function (d, enc) { return (d[enc] = null, d); }, {});
+                $('input#encoding').autocomplete({
+                    data: data,
+                    limit: 20,
+                    minLength: 0,
+                });
+            }, 0);
         });
         $scope.$watch(function () { return $location.url(); }, function () {
             var urlParams = $location.search();

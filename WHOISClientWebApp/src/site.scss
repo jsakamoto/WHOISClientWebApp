@@ -1,8 +1,5 @@
-﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
-}
-
-body {
 }
 
 .response {
@@ -44,4 +41,14 @@ body {
             }
         }
     }
+}
+
+.clipping {
+    overflow: hidden;
+}
+
+ul.autocomplete-content.dropdown-content {
+    position: absolute;
+    min-width: 100%;
+    max-height: 50vh;
 }
