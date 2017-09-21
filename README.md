@@ -1,7 +1,6 @@
 # WHOIS Client Web App/API
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://azuredeploy.net/)
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Summary
 
@@ -11,7 +10,7 @@ This is source code repository of the Web app which allows you to look up WHOIS 
 
 **Web UI - [https://whois.azurewebsites.net](https://whois.azurewebsites.net)**
 
-**API Document - [https://whois.azurewebsites.net/swagger/ui/index](https://whois.azurewebsites.net/swagger/ui/index)**
+**API Document - [https://whois.azurewebsites.net/swagger/](https://whois.azurewebsites.net/swagger/)**
 
 ## API document
 
@@ -109,10 +108,10 @@ curl -H "Accept: application/json" "{host}/api/encodings"
 
 ## Implementation
 
-- Server side codes are written by **C#** with **ASP.NET Web API** based OWIN.
+- Server side codes are written by **C#** with **ASP.NET Core 2.0 Web API**.
 - Client side codes are written by **TypeScript** with **AngularJS**.
 - To talk with WHOIS servers, using **WhoisClient.NET** [![NuGet Package](https://img.shields.io/nuget/v/WhoisClient.NET.svg)](https://www.nuget.org/packages/WhoisClient.NET/)
-- To support [Swagger](http://swagger.io/) specification and provide API document UI, using **Swashbuckle.Core** [![NuGet Package](https://img.shields.io/nuget/v/Swashbuckle.Core.svg)](https://www.nuget.org/packages/Swashbuckle.Core/)
+- To support [Swagger](http://swagger.io/) specification and provide API document UI, using **Swashbuckle.AspNetCore** [![NuGet Package](https://img.shields.io/nuget/v/Swashbuckle.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.AspNetCore/)
 - The site design was made with **[Materialize](http://materializecss.com/)**
 
 ## License
