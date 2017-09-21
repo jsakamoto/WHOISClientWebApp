@@ -114,6 +114,52 @@ curl -H "Accept: application/json" "{host}/api/encodings"
 - To support [Swagger](http://swagger.io/) specification and provide API document UI, using **Swashbuckle.AspNetCore** [![NuGet Package](https://img.shields.io/nuget/v/Swashbuckle.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.AspNetCore/)
 - The site design was made with **[Materialize](http://materializecss.com/)**
 
+## Deploy your own site
+
+### Docker image support
+
+"WHOIS Client Web App/API" is also redistributed as a Docker image on Docket Hub.
+
+https://hub.docker.com/r/jsakamoto/whoisclientwebapp/
+
+You can get Docker image of "WHOIS Client Web App/API" like this:
+
+```bash
+$ docker pull jsakamoto/whoisclientwebapp:latest
+```
+
+and run it:
+
+```bash
+$ docker run -d --name whoisclientwebapp -p 80:80 jsakamoto/whoisclientwebapp
+```
+
+Afetr do this, you can open `http://localhost/` with any web browser and access to the "WHOIS Client Web App/API" UI.
+
+### Deply to Microsoft Azure
+
+The public cloud service "Microsoft Azure" provide "Web App for Containers" service.
+
+You can deploy your own "WHOIS Client Web App/API" site on "Web App for Containers" service form docker image on Docker Hub like this figure:
+
+![fig.1 Azure Portal](.asset/fig1-azure-portal.png)
+
+
+### Deply to Heroku
+
+Once you got the docker image of "WHOIS Client Web App/API", you can deploy docker image of "WHOIS Client Web App/API" to Heroku with this instruction:
+
+```bash
+$ heroku update
+$ heroku login
+$ heroku container:login
+
+$ heroku apps:create {your-app-name}
+$ docker tag jsakamoto/whoisclientwebapp registry.heroku.com/{your-app-name}/web
+$ docker push registry.heroku.com/{your-app-name}/web
+```
+
+
 ## License
 
 [GNU General Public License v2](LICENSE)
