@@ -1,15 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77F8631E-D310-4C1C-9932-A908B53F236C}"
-	ProjectSection(SolutionItems) = preProject
-		Procfile = Procfile
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WHOISClientWebApp", "WHOISClientWebApp\WHOISClientWebApp.csproj", "{14AF1CE6-4C90-4F06-92F7-9423529A1B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WHOISClientWebApp", "WHOISClientWebApp\WHOISClientWebApp.csproj", "{C1F3CF9E-A246-4D86-A64E-4A2C85725088}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{14AF1CE6-4C90-4F06-92F7-9423529A1B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14AF1CE6-4C90-4F06-92F7-9423529A1B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14AF1CE6-4C90-4F06-92F7-9423529A1B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14AF1CE6-4C90-4F06-92F7-9423529A1B05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F3CF9E-A246-4D86-A64E-4A2C85725088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0FB82D75-0007-4986-BA51-65DF8C66E0BD}
 	EndGlobalSection
 EndGlobal
