@@ -15,6 +15,10 @@
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="src\site.scss" />
+  </ItemGroup>
+
   <!--<ItemGroup>
     <Content Remove="Pages\foo.cshtml" />
   </ItemGroup>-->
