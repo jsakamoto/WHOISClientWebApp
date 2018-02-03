@@ -2,8 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,4 +37,55 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Files not to publish (note that the 'scripts' subfolders are re-added below) -->
+    <Content Remove="src\**" />
+  </ItemGroup>
+
+  <Target Name="PreBuildWebpack" BeforeTargets="Build" Condition=" Exists('wwwroot\scripts') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+
+    <ReadLinesFromFile File="wwwroot\scripts\vendor.js.env">
+      <Output TaskParameter="Lines" ItemName="VendorJSEnv" />
+    </ReadLinesFromFile>
+  </Target>
+
+  <Target Name="DebugRunWebpack" AfterTargets="PreBuildWebpack" Condition=" '$(Configuration)' == 'Debug' And (!Exists('wwwroot\scripts') Or (@(VendorJSEnv) != 'devl')) ">
+    <!-- In development, the dist files won't exist on the first run or when cloning to
+         a different machine, so rebuild them if not already present. -->
+    <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
+    <WriteLinesToFile File="wwwroot\scripts\vendor.js.env" Lines="devl" Overwrite="true" Encoding="Unicode" />
+  </Target>
+
+  <Target Name="ReleaseRunWebpack" AfterTargets="PreBuildWebpack" Condition=" '$(Configuration)' == 'Release' And (!Exists('wwwroot\scripts') Or (@(VendorJSEnv) != 'prod')) ">
+    <!-- In development, the dist files won't exist on the first run or when cloning to
+         a different machine, so rebuild them if not already present. -->
+    <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+    <WriteLinesToFile File="wwwroot\scripts\vendor.js.env" Lines="prod" Overwrite="true" Encoding="Unicode" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <WriteLinesToFile File="wwwroot\scripts\vendor.js.env" Lines="prod" Overwrite="true" Encoding="Unicode" />
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="wwwroot\scripts\**; wwwroot\bundle.js; wwwroot\content\site.css" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
 </Project>
