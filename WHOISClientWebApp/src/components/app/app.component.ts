@@ -53,6 +53,16 @@ export class AppComponent implements OnInit {
                 onAutocomplete: (val: string) => { this.encoding = val; }
             });
         }, 0);
+
+        // Work around: Hide autocomplete popup for IE/Edge.
+        const $input = $('input.autocomplete');
+        $input.on('change keydown keyup paste blur focus mousedown touch', (a1, a2, a3) => {
+            setTimeout(() => {
+                const $ul = $(a1.target).closest('.input-field').children('ul.autocomplete-content.dropdown-content');
+                const itemCount = $('li', $ul).length;
+                if (itemCount == 0) $ul.hide(); else $ul.show();
+            }, 0);
+        });
     }
 
     async onChangeQueryParams(qParams: { [key: string]: string }): Promise<void> {

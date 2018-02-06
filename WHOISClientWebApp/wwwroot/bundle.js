@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "43da6841e43f18c0db27"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "48fcafcffa71ab054bf4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1591,7 +1591,7 @@ var AppComponent = (function () {
     AppComponent.prototype.initEncodings = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var _a;
+            var _a, $input;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -1608,6 +1608,17 @@ var AppComponent = (function () {
                                 onAutocomplete: function (val) { _this.encoding = val; }
                             });
                         }, 0);
+                        $input = __WEBPACK_IMPORTED_MODULE_4_jquery__('input.autocomplete');
+                        $input.on('change keydown keyup paste blur focus mousedown touch', function (a1, a2, a3) {
+                            setTimeout(function () {
+                                var $ul = __WEBPACK_IMPORTED_MODULE_4_jquery__(a1.target).closest('.input-field').children('ul.autocomplete-content.dropdown-content');
+                                var itemCount = __WEBPACK_IMPORTED_MODULE_4_jquery__('li', $ul).length;
+                                if (itemCount == 0)
+                                    $ul.hide();
+                                else
+                                    $ul.show();
+                            }, 0);
+                        });
                         return [2 /*return*/];
                 }
             });
