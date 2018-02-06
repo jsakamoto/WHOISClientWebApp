@@ -109,7 +109,7 @@ curl -H "Accept: application/json" "{host}/api/encodings"
 ## Implementation
 
 - Server side codes are written by **C#** with **ASP.NET Core 2.0 Web API**.
-- Client side codes are written by **TypeScript** with **AngularJS**.
+- Client side codes are written by **TypeScript** with **Angular**.
 - To talk with WHOIS servers, using **WhoisClient.NET** [![NuGet Package](https://img.shields.io/nuget/v/WhoisClient.NET.svg)](https://www.nuget.org/packages/WhoisClient.NET/)
 - To support [Swagger](http://swagger.io/) specification and provide API document UI, using **Swashbuckle.AspNetCore** [![NuGet Package](https://img.shields.io/nuget/v/Swashbuckle.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.AspNetCore/)
 - The site design was made with **[Materialize](http://materializecss.com/)**
