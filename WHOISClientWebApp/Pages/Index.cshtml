@@ -38,7 +38,7 @@
     <base href="/">
 </head>
 
-<body ng-app="app" ng-controller="mainController as ctrl" ng-cloak>
+<body>
     <div class="clipping">
         <nav class="grey darken-2" role="navigation">
             <div class="nav-wrapper container">
@@ -47,47 +47,7 @@
         </nav>
 
         <div class="container section">
-            <div class="row">
-                <form name="queryform" class="col s12 m6 l5" ng-submit="ctrl.executeQuery(queryform.$valid)" novalidate>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" id="query" ng-model="ctrl.query" placeholder="Domain or IP Address to query" required />
-                            <label for="query">Query</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" id="server" ng-model="ctrl.server" placeholder="(optional) Host name or IP Address of whois server" />
-                            <label for="server">Whois server</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" name="encoding" id="encoding" ng-model="ctrl.encoding" class="autocomplete" />
-                            <label for="encoding">Encoding</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12" ng-class="{disabled:queryform.$invalid}">
-                            <button type="submit" class="blue btn btn-large waves-effect waves-light col s12">query</button>
-                        </div>
-                    </div>
-                </form>
-
-                <div class="col s12 m6 l7 response">
-                    <label>Response</label>
-                    <div ng-show="ctrl.response.Raw != null">
-                        <h4>Responded servers</h4>
-                        <div>{{ctrl.response.RespondedServers.join(' > ')}}</div>
-                        <h4>IP address range</h4>
-                        <div>{{ctrl.response.AddressRange.Begin}} - {{ctrl.response.AddressRange.End}}</div>
-                        <h4>Organization name</h4>
-                        <div>{{ctrl.response.OrganizationName}}</div>
-                        <h4>Raw response text</h4>
-                        <pre>{{ctrl.response.Raw}}</pre>
-                    </div>
-                </div>
-            </div>
+            <app></app>
         </div>
 
         <footer class="page-footer grey darken-2">
@@ -113,7 +73,7 @@
                             <li><a target="_blank" class="grey-text" href="https://docs.microsoft.com/en-us/aspnet/core/#build-web-apis-and-web-ui-using-aspnet-core-mvc">ASP.NET Core Web API</a></li>
                             <li><a target="_blank" class="grey-text" href="https://www.nuget.org/packages/Swashbuckle.AspNetCore/">Swashbuckle.AspNetCore</a></li>
                             <li><a target="_blank" class="grey-text" href="http://www.typescriptlang.org/">TypeScript</a></li>
-                            <li><a target="_blank" class="grey-text" href="https://angularjs.org/">AngularJS v.1.x</a></li>
+                            <li><a target="_blank" class="grey-text" href="https://angular.io/">Angular</a></li>
                             <li><a target="_blank" class="grey-text" href="http://materializecss.com/">Materialize</a></li>
                         </ul>
                     </div>
@@ -142,6 +102,7 @@
     </div>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/materialize.min.js"></script>
+    <script src="scripts/vendor.js"></script>
     <script src="bundle.js"></script>
 </body>
 

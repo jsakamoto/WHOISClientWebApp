@@ -1,0 +1,43 @@
+<ngx-loading-bar [includeSpinner]="false" [color]="'#ffd800'"></ngx-loading-bar>
+
+<div class="row">
+    <form #queryform="ngForm" name="queryform" class="col s12 m6 l5" (ngSubmit)="executeQuery(queryform)" novalidate>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" id="query" name="query" [(ngModel)]="query" placeholder="Domain or IP Address to query" required />
+                <label for="query">Query</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" id="server" name="server" [(ngModel)]="server" placeholder="(optional) Host name or IP Address of whois server" />
+                <label for="server">Whois server</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="encoding" id="encoding" [(ngModel)]="encoding" class="autocomplete" autocomplete="off" />
+                <label for="encoding">Encoding</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <button type="submit" class="blue btn btn-large waves-effect waves-light col s12" [disabled]="queryform.invalid">query</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="col s12 m6 l7 response">
+        <label>Response</label>
+        <div *ngIf="response != null">
+            <h4>Responded servers</h4>
+            <div *ngIf="response.RespondedServers">{{response.RespondedServers.join(' > ')}}</div>
+            <h4>IP address range</h4>
+            <div *ngIf="response.AddressRange">{{response.AddressRange.Begin}} - {{response.AddressRange.End}}</div>
+            <h4>Organization name</h4>
+            <div *ngIf="response.OrganizationName">{{response.OrganizationName}}</div>
+            <h4>Raw response text</h4>
+            <pre *ngIf="response.Raw">{{response.Raw}}</pre>
+        </div>
+    </div>
+</div>
