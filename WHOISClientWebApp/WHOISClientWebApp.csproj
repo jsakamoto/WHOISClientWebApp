@@ -29,7 +29,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.4.0" />
-    <PackageReference Include="WhoisClient.NET" Version="3.0.0" />
+    <PackageReference Include="WhoisClient.NET" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
